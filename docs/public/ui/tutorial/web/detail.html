@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web｜教程详情（如何成为超级个体 · Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-900 flex flex-col">
+    <!-- 顶部导航 -->
+    <nav class="flex items-center justify-between px-6 md:px-10 py-4 bg-white/95 border-b border-gray-200">
+      <div class="flex items-center gap-4">
+        <button
+          id="backBtn"
+          class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+          title="返回列表"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div>
+          <div class="text-xs text-gray-500">教程详情 · 如何成为超级个体</div>
+          <div class="text-lg font-semibold tracking-tight text-gray-900" id="navTitle">—</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="hidden sm:inline text-sm text-gray-500 hover:text-gray-700">返回入口</a>
+        <button
+          id="copyBtn"
+          class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+          title="复制（Mock）"
+        >
+          <i class="fa-regular fa-copy"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 主体内容 -->
+    <main class="flex-1 overflow-hidden bg-gray-50">
+      <div class="h-full grid grid-cols-12 gap-6 px-6 md:px-10 py-6">
+        <!-- 主内容 -->
+        <section class="col-span-12 lg:col-span-8 h-full overflow-y-auto no-scrollbar pr-1 md:pr-2">
+          <div class="rounded-3xl border border-gray-200 bg-white overflow-hidden">
+            <div class="relative h-64 md:h-80 bg-gray-200">
+              <img id="heroImg" alt="" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"></div>
+              <div class="absolute left-6 right-6 bottom-5 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                  <span
+                    id="stagePill"
+                    class="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-xs text-white backdrop-blur"
+                  >
+                    <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+                    <span id="stageLabel">入门</span>
+                  </span>
+                  <span
+                    id="sourcePill"
+                    class="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50/95 px-3 py-1 text-[11px] text-emerald-800"
+                  >
+                    <span id="sourceLabel">自产</span>
+                  </span>
+                </div>
+                <span class="text-xs text-white/80" id="heroMeta">仅展示摘要与来源信息</span>
+              </div>
+            </div>
+
+            <div class="p-6 md:p-8">
+              <h1 id="title" class="text-2xl font-semibold tracking-tight text-gray-900 leading-9">
+                —
+              </h1>
+              <p id="summary" class="mt-3 text-sm leading-7 text-gray-700">
+                —
+              </p>
+
+              <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
+                  <i class="fa-regular fa-clock"></i>
+                  <span id="publishTime">—</span>
+                </span>
+                <span id="topicChips" class="flex flex-wrap gap-1"></span>
+              </div>
+
+              <div class="mt-8 grid gap-4">
+                <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-gray-900">正文示意（Mock）</div>
+                    <div class="text-xs text-gray-500">可替换为富文本 / Markdown 渲染</div>
+                  </div>
+                  <div id="content" class="mt-4 text-sm leading-7 text-gray-700 space-y-2">
+                    <p>—</p>
+                  </div>
+                </div>
+
+                <div class="rounded-3xl border border-indigo-100 bg-indigo-50/70 p-6">
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="h-12 w-12 rounded-3xl bg-indigo-200/60 text-indigo-700 flex items-center justify-center"
+                    >
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="flex-1">
+                      <div class="font-semibold text-indigo-900">来源与外链说明</div>
+                      <div id="sourceExplain" class="mt-2 text-sm leading-7 text-indigo-900/80">
+                        —
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 侧栏 -->
+        <aside class="hidden lg:flex col-span-4 h-full overflow-hidden flex-col gap-5">
+          <div class="rounded-3xl bg-white border border-gray-200 p-6">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold text-gray-900">外链 / 原文</div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-gray-500"></i>
+            </div>
+            <div id="externalHint" class="mt-2 text-sm leading-7 text-gray-600">
+              若为外链类型，将在新窗口打开原站点；否则按钮仅为占位示意。
+            </div>
+            <button
+              id="openExternalBtn"
+              class="mt-5 w-full rounded-2xl bg-sky-600 hover:bg-sky-700 active:bg-sky-700 text-white font-semibold py-3"
+            >
+              打开外链
+            </button>
+          </div>
+
+          <div class="rounded-3xl bg-white border border-gray-200 p-6 flex-1 overflow-hidden">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold text-gray-900">相关新闻 / 本周案例（占位）</div>
+              <span class="text-xs text-gray-500">来自新闻模块 Mock</span>
+            </div>
+            <div id="relList" class="mt-4 space-y-3 overflow-y-auto no-scrollbar pr-1"></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Toast -->
+    <div
+      id="toast"
+      class="pointer-events-none opacity-0 transition fixed left-1/2 -translate-x-1/2 top-6 rounded-full bg-gray-900 text-white text-xs px-4 py-2 shadow-xl"
+    >
+      已复制
+    </div>
+
+    <script>
+      const stages = [
+        { id: "intro", name: "入门" },
+        { id: "advanced", name: "进阶" },
+        { id: "monetize", name: "变现" },
+      ];
+      const topics = [
+        { id: "tools", name: "工具" },
+        { id: "ai", name: "AI 协作" },
+        { id: "content", name: "内容创作" },
+        { id: "onebiz", name: "一人公司" },
+        { id: "compliance", name: "政策与合规" },
+      ];
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+      function formatTime(ts) {
+        const d = new Date(ts);
+        return `${d.getMonth() + 1}月${d.getDate()}日 ${pad2(d.getHours())}:${pad2(
+          d.getMinutes()
+        )}`;
+      }
+
+      function genMockTutorials() {
+        const baseSummaryIntro =
+          "在「成为超级个体」这条路的起点，你需要先学会在信息噪音中辨认出真正重要的信号，再据此安排自己的学习与行动节奏。";
+        const baseSummaryAdvanced =
+          "进入进阶阶段后的挑战，是如何在复杂生活与工作环境下，依然保持稳定输出并不断校准方向。";
+        const baseSummaryMonetize =
+          "当你已经形成了一定的影响力，变现问题不再是“有没有钱”，而是“这笔钱是否帮助你走得更远”。";
+
+        const stageIds = ["intro", "advanced", "monetize"];
+        const sourceTypes = ["self", "repost", "external"];
+        const now = Date.now();
+        const tutorials = [];
+        let idCounter = 1;
+
+        for (const stageId of stageIds) {
+          for (let i = 0; i < 18; i++) {
+            const title =
+              stageId === "intro"
+                ? `入门关键动作 ${i + 1}：为自己设定一个可验证的实验`
+                : stageId === "advanced"
+                ? `进阶实践 ${i + 1}：用节奏和结构保护你的创造力`
+                : `变现实验 ${i + 1}：把价值包装成可购买的产品`;
+
+            const summary =
+              stageId === "intro"
+                ? baseSummaryIntro
+                : stageId === "advanced"
+                ? baseSummaryAdvanced
+                : baseSummaryMonetize;
+
+            const topicCount = 1 + (i % 2);
+            const shuffled = [...topics].sort(() => Math.random() - 0.5);
+            const topicIds = shuffled.slice(0, topicCount).map((t) => t.id);
+            const sourceType = sourceTypes[i % sourceTypes.length];
+            const isExternal = sourceType === "external";
+            const publishTime = now - (idCounter * 43 + (stageId === "monetize" ? 21 : 11)) * 60 * 1000;
+
+            tutorials.push({
+              id: `tutorial-${idCounter}`,
+              title,
+              summary,
+              stageId,
+              topicIds,
+              coverImage: `https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80&sig=${idCounter}`,
+              sourceType,
+              sourceLabel:
+                sourceType === "self" ? "自产" : sourceType === "repost" ? "转载" : "外链",
+              externalUrl: isExternal ? "https://www.producthunt.com/" : "",
+              publishTime,
+              content:
+                "与其把成为「超级个体」理解为一次巨大转型，不如把它当作一系列小实验的集合：每一次实验都帮助你更了解自己，验证一个假设，或建立一段新的关系。\\n\\n你可以从以下三个方向设计实验：\\n1. 能力实验：在一周内，用最小代价给陌生人提供一次真实帮助。\\n2. 内容实验：围绕一个主题连续输出 7 天，观察反馈与自己的感受。\\n3. 商业实验：设计一个价格很低的小产品，仅验证“是否有人愿意为此付费”。",
+            });
+
+            idCounter++;
+          }
+        }
+        return tutorials;
+      }
+
+      const tutorials = genMockTutorials();
+
+      const els = {
+        backBtn: document.getElementById("backBtn"),
+        copyBtn: document.getElementById("copyBtn"),
+        toast: document.getElementById("toast"),
+        heroImg: document.getElementById("heroImg"),
+        stageLabel: document.getElementById("stageLabel"),
+        stagePill: document.getElementById("stagePill"),
+        sourcePill: document.getElementById("sourcePill"),
+        sourceLabel: document.getElementById("sourceLabel"),
+        heroMeta: document.getElementById("heroMeta"),
+        navTitle: document.getElementById("navTitle"),
+        title: document.getElementById("title"),
+        summary: document.getElementById("summary"),
+        publishTime: document.getElementById("publishTime"),
+        topicChips: document.getElementById("topicChips"),
+        content: document.getElementById("content"),
+        sourceExplain: document.getElementById("sourceExplain"),
+        externalHint: document.getElementById("externalHint"),
+        openExternalBtn: document.getElementById("openExternalBtn"),
+        relList: document.getElementById("relList"),
+      };
+
+      function showToast(text) {
+        els.toast.textContent = text;
+        els.toast.classList.remove("opacity-0");
+        els.toast.classList.add("opacity-100");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          els.toast.classList.add("opacity-0");
+          els.toast.classList.remove("opacity-100");
+        }, 900);
+      }
+
+      function genMockRelatedNews(stageId) {
+        const category = stageId === "monetize" ? "monetize" : "general";
+        const base =
+          category === "monetize"
+            ? [
+                "小团队如何用订阅制稳定收入（案例）",
+                "个人知识付费产品的 5 种典型形态",
+                "从项目制到产品化：一个开发者的转型故事",
+              ]
+            : [
+                "一个设计师如何在 100 天内完成职业转型",
+                "从 0 粉丝到第一批忠实读者的实战记录",
+                "利用 AI 工具把写作时间缩短一半的实践",
+              ];
+        const now = Date.now();
+        return base.map((title, idx) => {
+          const ts = now - (idx + 1) * 4 * 60 * 60 * 1000;
+          return {
+            id: `news-${idx + 1}`,
+            title,
+            sourceName: idx % 2 === 0 ? "超级个体新闻" : "Indie Hackers",
+            publishTime: ts,
+          };
+        });
+      }
+
+      function init() {
+        const u = new URL(window.location.href);
+        const id = u.searchParams.get("id") || "tutorial-1";
+        const stage = u.searchParams.get("stage") || "intro";
+        const topic = u.searchParams.get("topic") || "";
+
+        const item =
+          tutorials.find((t) => t.id === id) ||
+          tutorials.find((t) => t.stageId === stage) ||
+          tutorials[0];
+
+        const stageMeta = stages.find((s) => s.id === item.stageId);
+        const topicLabels = topics.filter((t) => item.topicIds.includes(t.id)).map((t) => t.name);
+
+        els.heroImg.src = item.coverImage;
+        els.stageLabel.textContent = stageMeta ? stageMeta.name : "";
+        els.sourceLabel.textContent = item.sourceLabel;
+        els.navTitle.textContent = item.title;
+        els.title.textContent = item.title;
+        els.summary.textContent = item.summary;
+        els.publishTime.textContent = formatTime(item.publishTime);
+
+        const heroMeta = els.heroMeta;
+        if (item.sourceType === "external") {
+          heroMeta.textContent = "外链精选内容，仅展示摘要与来源信息";
+        } else if (item.sourceType === "repost") {
+          heroMeta.textContent = "转载内容，保留原文核心结构与来源说明";
+        } else {
+          heroMeta.textContent = "平台自产内容，可与本周案例/新闻联动";
+        }
+
+        const chips = topicLabels
+          .map(
+            (name) =>
+              `<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[11px] text-gray-600">${name}</span>`
+          )
+          .join("");
+        els.topicChips.innerHTML = chips;
+
+        els.content.innerHTML = "";
+        const lines = item.content.split("\\n");
+        lines.forEach((line) => {
+          const p = document.createElement("p");
+          p.textContent = line;
+          els.content.appendChild(p);
+        });
+
+        if (item.sourceType === "external") {
+          els.sourceExplain.textContent =
+            "该教程为外链精选内容：平台负责提供结构化入口与简要摘要，完整内容托管在第三方站点。点击右侧「打开外链」按钮将在新窗口跳转。";
+          els.sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-indigo-200 bg-indigo-50/95 px-3 py-1 text-[11px] text-indigo-800";
+        } else if (item.sourceType === "repost") {
+          els.sourceExplain.textContent =
+            "该教程为经授权转载内容：在保留原文核心观点的前提下，做了结构与排版优化。可在后续版本中补充「阅读原文」链接。";
+          els.sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50/95 px-3 py-1 text-[11px] text-amber-800";
+        } else {
+          els.sourceExplain.textContent =
+            "该教程为平台自产内容：可以与「本周案例」「相关新闻」等模块打通，形成从认知到实践的完整闭环。";
+          els.sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50/95 px-3 py-1 text-[11px] text-emerald-800";
+        }
+
+        if (item.externalUrl) {
+          els.externalHint.textContent = "该教程为外链类型，将在新窗口打开原文所在站点。";
+          els.openExternalBtn.disabled = false;
+          els.openExternalBtn.className =
+            "mt-5 w-full rounded-2xl bg-sky-600 hover:bg-sky-700 active:bg-sky-700 text-white font-semibold py-3";
+          els.openExternalBtn.addEventListener("click", () => {
+            window.open(item.externalUrl, "_blank", "noopener,noreferrer");
+          });
+        } else {
+          els.externalHint.textContent =
+            "该教程为自产/转载内容，按钮仅作占位。实际产品中可改为收藏、分享或「标记为已读」。";
+          els.openExternalBtn.disabled = true;
+          els.openExternalBtn.className =
+            "mt-5 w-full rounded-2xl bg-gray-200 text-gray-500 font-semibold py-3";
+        }
+
+        const relatedNews = genMockRelatedNews(item.stageId);
+        els.relList.innerHTML = relatedNews
+          .map(
+            (n) => `
+          <button class="w-full text-left rounded-2xl border border-gray-200 p-4 hover:bg-gray-50 transition">
+            <div class="text-sm font-medium text-gray-900 leading-6">${n.title}</div>
+            <div class="mt-2 flex items-center justify-between text-xs text-gray-500">
+              <span>${n.sourceName}</span>
+              <span>${formatTime(n.publishTime)}</span>
+            </div>
+          </button>
+        `
+          )
+          .join("");
+
+        els.backBtn.addEventListener("click", () => {
+          const params = new URLSearchParams({
+            stage: item.stageId,
+          });
+          if (topic) params.set("topic", topic);
+          window.location.href = `./desktop.html?${params.toString()}`;
+        });
+
+        els.copyBtn.addEventListener("click", async () => {
+          const text = `${item.title}（${item.sourceLabel}）`;
+          try {
+            if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+            showToast("已复制（Mock）");
+          } catch {
+            showToast("复制失败（Mock）");
+          }
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>
+

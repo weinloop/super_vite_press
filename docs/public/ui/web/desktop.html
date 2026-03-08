@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web｜超级个体新闻（Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-900 flex flex-col">
+    <!-- Web 伪浏览器栏（页面级） -->
+    <header class="flex items-center gap-3 px-4 py-2 bg-gray-100 border-b">
+      <div class="flex gap-1">
+        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+      </div>
+      <span class="text-gray-500 text-sm">https://superoneman.local/news</span>
+      <div class="ml-auto flex items-center gap-2 text-gray-500 text-sm">
+        <i class="fa-solid fa-lock"></i>
+        <span class="hidden lg:inline">Mock Prototype</span>
+      </div>
+    </header>
+
+    <div class="flex-1 flex flex-col">
+      <!-- 顶部导航 -->
+      <nav class="flex items-center justify-between px-10 py-5 bg-white border-b">
+            <div class="flex items-center gap-4">
+              <a href="../index.html" class="flex items-center gap-3">
+                <div
+                  class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500"
+                ></div>
+                <div>
+                  <div class="text-xs text-gray-500">REQ-018-002</div>
+                  <div class="text-lg font-semibold tracking-tight text-gray-900">超级个体新闻</div>
+                </div>
+              </a>
+              <div class="ml-6 flex items-center gap-2 rounded-2xl bg-gray-100 p-1">
+                <button id="tabIndividual" class="rounded-xl px-4 py-2 text-sm font-medium transition">
+                  个体新闻
+                </button>
+                <button id="tabAI" class="rounded-xl px-4 py-2 text-sm font-medium transition">AI 新闻</button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="hidden xl:flex items-center gap-2 rounded-2xl bg-gray-100 px-4 py-2 text-sm text-gray-500">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>关键词搜索（P2，占位）</span>
+              </div>
+              <button
+                id="refreshBtn"
+                class="h-11 w-11 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                title="刷新（模拟）"
+              >
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+              <button
+                id="stateBtn"
+                class="h-11 w-11 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                title="状态（原型）"
+              >
+                <i class="fa-solid fa-sliders"></i>
+              </button>
+            </div>
+      </nav>
+
+      <!-- 内容区 -->
+      <div class="flex-1 overflow-hidden bg-gray-50">
+        <div class="h-full grid grid-cols-12 gap-6 px-10 py-6">
+          <!-- 主列表 -->
+          <section class="col-span-8 h-full overflow-hidden flex flex-col">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-sm text-gray-500">聚合展示 · 按发布时间倒序</div>
+                    <h2 id="headline" class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
+                      今日最新 · 个体新闻
+                    </h2>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm text-gray-500">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 border border-gray-200">
+                      <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                      <span id="countHint">60 条（Mock）</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex-1 overflow-y-auto no-scrollbar pr-2">
+                  <div id="listContainer" class="space-y-4"></div>
+                  <div id="loadMoreWrap" class="mt-6">
+                    <button
+                      id="loadMoreBtn"
+                      class="w-full rounded-2xl bg-gray-900 text-white py-3 font-semibold hover:bg-black active:bg-black transition"
+                    >
+                      加载更多
+                    </button>
+                    <div class="mt-2 text-center text-xs text-gray-500">每次加载 12 条（Mock）</div>
+                  </div>
+                  <div class="h-3"></div>
+                </div>
+          </section>
+
+          <!-- 侧栏 -->
+          <aside class="col-span-4 h-full overflow-hidden flex flex-col">
+                <div class="rounded-3xl bg-white border border-gray-200 p-5">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-gray-900">阅读规则</div>
+                    <i class="fa-solid fa-shield-halved text-indigo-600"></i>
+                  </div>
+                  <div class="mt-2 text-sm leading-7 text-gray-600">
+                    列表展示标题/摘要/来源/时间；详情页提供“打开原文”外链。原型用 Mock 数据与真实图片 URL。
+                  </div>
+                </div>
+
+                <div class="mt-5 rounded-3xl bg-white border border-gray-200 p-5 flex-1 overflow-hidden flex flex-col">
+                  <div class="flex items-center justify-between">
+                    <div class="font-semibold text-gray-900">热门来源（Mock）</div>
+                    <span class="text-xs text-gray-500">最近 24h</span>
+                  </div>
+                  <div id="sourceList" class="mt-4 space-y-3 overflow-y-auto no-scrollbar pr-1"></div>
+                </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div
+        id="toast"
+        class="pointer-events-none opacity-0 transition fixed left-1/2 -translate-x-1/2 top-6 rounded-full bg-gray-900 text-white text-xs px-4 py-2 shadow-xl"
+      >
+        已刷新
+      </div>
+
+      <!-- 状态切换弹层 -->
+      <div id="stateModal" class="hidden fixed inset-0 bg-black/40">
+        <div class="absolute left-1/2 top-24 -translate-x-1/2 w-[720px] rounded-3xl bg-white shadow-2xl border border-gray-200 overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <div class="font-semibold">切换列表状态（原型）</div>
+            <button id="closeStateBtn" class="h-10 w-10 rounded-2xl hover:bg-gray-100 text-gray-600">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="p-6 grid grid-cols-3 gap-3">
+            <button data-mode="normal" class="modeBtn rounded-2xl border border-gray-200 px-4 py-4 text-left hover:bg-gray-50">
+              <div class="font-medium">正常</div>
+              <div class="text-xs text-gray-500 mt-1">展示列表 + 加载更多</div>
+            </button>
+            <button data-mode="empty" class="modeBtn rounded-2xl border border-gray-200 px-4 py-4 text-left hover:bg-gray-50">
+              <div class="font-medium">空状态</div>
+              <div class="text-xs text-gray-500 mt-1">模拟暂无该分类新闻</div>
+            </button>
+            <button data-mode="error" class="modeBtn rounded-2xl border border-gray-200 px-4 py-4 text-left hover:bg-gray-50">
+              <div class="font-medium">加载失败</div>
+              <div class="text-xs text-gray-500 mt-1">模拟接口失败，可重试</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const covers = [
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&q=80",
+        "https://images.unsplash.com/photo-1557683316-973673baf926?w=1400&q=80",
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1400&q=80",
+        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80",
+        "https://images.unsplash.com/photo-1554774853-b414d539f13d?w=1400&q=80",
+        "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1400&q=80",
+      ];
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+      function formatTime(ts) {
+        const d = new Date(ts);
+        const now = new Date();
+        const deltaMin = Math.max(0, Math.round((now - d) / 60000));
+        if (deltaMin <= 2) return "刚刚";
+        if (deltaMin < 60) return `${deltaMin} 分钟前`;
+        return `${d.getMonth() + 1}月${d.getDate()}日 ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+      }
+
+      function genMockNews(category) {
+        const baseSources =
+          category === "ai"
+            ? [
+                { name: "OpenAI Blog", url: "https://openai.com/blog" },
+                { name: "Google AI", url: "https://ai.google/" },
+                { name: "Hugging Face", url: "https://huggingface.co/blog" },
+                { name: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence" },
+                { name: "MIT Tech Review", url: "https://www.technologyreview.com/" },
+              ]
+            : [
+                { name: "Indie Hackers", url: "https://www.indiehackers.com/" },
+                { name: "Product Hunt", url: "https://www.producthunt.com/" },
+                { name: "Hacker News", url: "https://news.ycombinator.com/" },
+                { name: "Lenny’s Newsletter", url: "https://www.lennysnewsletter.com/" },
+                { name: "Stripe", url: "https://stripe.com/" },
+              ];
+
+        const titleSeeds =
+          category === "ai"
+            ? [
+                "多模态模型如何改变个人工作流",
+                "开源推理加速：把延迟从 2s 降到 400ms",
+                "AI 产品增长：从体验到留存的 7 个关键点",
+                "政策更新：AI 合规与数据治理的最新动向",
+                "工具链升级：把提示工程变成可复用资产",
+              ]
+            : [
+                "独立开发者如何在 30 天做出可售卖产品",
+                "从 0 到 1：个人品牌与内容分发的组合拳",
+                "小团队增长：把用户反馈变成迭代节奏",
+                "副业转正：如何找到第一个稳定的付费用户",
+                "产品冷启动：用最小闭环验证需求",
+              ];
+
+        const summarySeeds =
+          category === "ai"
+            ? [
+                "围绕“可落地”的使用场景展开，强调可观察指标与迭代回路，避免只堆模型能力。",
+                "从数据、评测、推理到上线监控给出全链路要点，并补充常见坑位与规避方案。",
+                "以真实团队案例拆解：需求澄清、产研协作、以及把模型融入体验的关键触点。",
+              ]
+            : [
+                "从市场与用户心智入手，强调先卖后做与快速验证，减少无效开发。",
+                "拆解获客渠道、定价与交付方式，给出可复用的执行清单与节奏建议。",
+                "聚焦最小可行闭环：问题-方案-验证-复购，帮助个人保持长期迭代。",
+              ];
+
+        const now = Date.now();
+        const items = [];
+        for (let i = 0; i < 60; i++) {
+          const source = baseSources[i % baseSources.length];
+          const title = titleSeeds[i % titleSeeds.length] + `（第 ${i + 1} 条）`;
+          const summary = summarySeeds[i % summarySeeds.length];
+          const publishTime = now - (i * 31 + (category === "ai" ? 13 : 5)) * 60 * 1000;
+          const id = `${category}-${i + 1}`;
+          items.push({
+            id,
+            category,
+            title,
+            summary,
+            sourceName: source.name,
+            sourceUrl: source.url,
+            publishTime,
+            coverUrl: covers[i % covers.length],
+          });
+        }
+        return items;
+      }
+
+      const dataset = {
+        individual: genMockNews("individual"),
+        ai: genMockNews("ai"),
+      };
+
+      let currentCategory = "individual";
+      let page = 1;
+      let mode = "normal"; // normal | empty | error
+      const PAGE_SIZE = 12;
+
+      const els = {
+        tabIndividual: document.getElementById("tabIndividual"),
+        tabAI: document.getElementById("tabAI"),
+        refreshBtn: document.getElementById("refreshBtn"),
+        stateBtn: document.getElementById("stateBtn"),
+        stateModal: document.getElementById("stateModal"),
+        closeStateBtn: document.getElementById("closeStateBtn"),
+        toast: document.getElementById("toast"),
+        headline: document.getElementById("headline"),
+        countHint: document.getElementById("countHint"),
+        listContainer: document.getElementById("listContainer"),
+        loadMoreWrap: document.getElementById("loadMoreWrap"),
+        loadMoreBtn: document.getElementById("loadMoreBtn"),
+        sourceList: document.getElementById("sourceList"),
+      };
+
+      function showToast(text) {
+        els.toast.textContent = text;
+        els.toast.classList.remove("opacity-0");
+        els.toast.classList.add("opacity-100");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          els.toast.classList.add("opacity-0");
+          els.toast.classList.remove("opacity-100");
+        }, 900);
+      }
+
+      function setTabStyles() {
+        const active = "bg-white shadow-sm text-gray-900 ring-1 ring-gray-200";
+        const inactive = "text-gray-600 hover:text-gray-800";
+
+        if (currentCategory === "individual") {
+          els.tabIndividual.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${active}`;
+          els.tabAI.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${inactive}`;
+        } else {
+          els.tabAI.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${active}`;
+          els.tabIndividual.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${inactive}`;
+        }
+      }
+
+      function truncate(s, n) {
+        if (!s) return "";
+        return s.length > n ? s.slice(0, n) + "…" : s;
+      }
+
+      function renderRow(item) {
+        return `
+          <article class="rounded-3xl border border-gray-200 bg-white overflow-hidden hover:shadow-[0_20px_60px_rgba(15,23,42,0.10)] transition">
+            <button data-id="${item.id}" class="w-full text-left">
+              <div class="grid grid-cols-12 gap-0">
+                <div class="col-span-4 relative h-[190px]">
+                  <img src="${item.coverUrl}" alt="" class="h-full w-full object-cover" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+                  <div class="absolute left-4 right-4 bottom-3 flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs text-white backdrop-blur">
+                      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                      <span>${item.sourceName}</span>
+                    </span>
+                    <span class="text-xs text-white/80">${formatTime(item.publishTime)}</span>
+                  </div>
+                </div>
+                <div class="col-span-8 p-5">
+                  <h3 class="text-[18px] leading-7 font-semibold text-gray-900">
+                    ${item.title}
+                  </h3>
+                  <p class="mt-2 text-sm leading-7 text-gray-600">
+                    ${truncate(item.summary, 170)}
+                  </p>
+                  <div class="mt-4 flex items-center justify-between text-xs text-gray-500">
+                    <span class="inline-flex items-center gap-2">
+                      <i class="fa-regular fa-clock"></i>
+                      <span>发布时间倒序</span>
+                    </span>
+                    <span class="inline-flex items-center gap-2 text-indigo-600">
+                      <span>查看详情</span>
+                      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </article>
+        `;
+      }
+
+      function renderEmpty() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-12 text-center">
+            <div class="mx-auto h-14 w-14 rounded-3xl bg-gray-100 flex items-center justify-center text-gray-500">
+              <i class="fa-regular fa-face-meh text-2xl"></i>
+            </div>
+            <div class="mt-4 text-lg font-semibold text-gray-900">暂无该分类新闻</div>
+            <div class="mt-1 text-sm text-gray-500">你可以切换分类或点击刷新重试。</div>
+            <button id="emptyRetryBtn" class="mt-5 inline-flex items-center gap-2 rounded-2xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>刷新</span>
+            </button>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("emptyRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderError() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-rose-200 bg-rose-50 px-6 py-10">
+            <div class="flex items-start gap-4">
+              <div class="h-14 w-14 rounded-3xl bg-rose-200/60 text-rose-700 flex items-center justify-center">
+                <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-lg font-semibold text-rose-900">加载失败，请刷新重试</div>
+                <div class="mt-1 text-sm leading-7 text-rose-800/80">
+                  原型演示：当列表接口失败时，展示错误状态与重试入口。
+                </div>
+                <button id="errorRetryBtn" class="mt-5 inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-5 py-3 text-sm font-semibold text-white hover:bg-rose-700">
+                  <i class="fa-solid fa-rotate-right"></i>
+                  <span>重试</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("errorRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderSources() {
+        const items = dataset[currentCategory];
+        const map = new Map();
+        for (const it of items.slice(0, 30)) {
+          map.set(it.sourceName, (map.get(it.sourceName) || 0) + 1);
+        }
+        const rows = Array.from(map.entries())
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 8)
+          .map(([name, cnt], idx) => {
+            const pct = Math.max(12, Math.min(90, cnt * 12 + idx * 4));
+            return `
+              <div class="rounded-2xl border border-gray-200 p-4 hover:bg-gray-50 transition">
+                <div class="flex items-center justify-between">
+                  <div class="font-medium text-gray-900">${name}</div>
+                  <div class="text-xs text-gray-500">${cnt} 条</div>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-gray-100 overflow-hidden">
+                  <div class="h-full rounded-full bg-indigo-600" style="width:${pct}%"></div>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+        els.sourceList.innerHTML = rows || `<div class="text-sm text-gray-500">暂无数据</div>`;
+      }
+
+      function renderList() {
+        setTabStyles();
+
+        els.headline.textContent = currentCategory === "ai" ? "今日最新 · AI 新闻" : "今日最新 · 个体新闻";
+        els.countHint.textContent = `${dataset[currentCategory].length} 条（Mock）`;
+        renderSources();
+
+        if (mode === "empty") return renderEmpty();
+        if (mode === "error") return renderError();
+
+        const items = dataset[currentCategory];
+        const slice = items.slice(0, page * PAGE_SIZE);
+        els.listContainer.innerHTML = slice.map(renderRow).join("");
+
+        els.listContainer.querySelectorAll("button[data-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            window.location.href = `./detail.html?id=${encodeURIComponent(id)}&category=${encodeURIComponent(currentCategory)}`;
+          });
+        });
+
+        const hasMore = items.length > slice.length;
+        if (!hasMore) {
+          els.loadMoreBtn.disabled = true;
+          els.loadMoreBtn.textContent = "没有更多了";
+          els.loadMoreBtn.className = "w-full rounded-2xl bg-gray-200 text-gray-500 py-3 font-semibold";
+        } else {
+          els.loadMoreBtn.disabled = false;
+          els.loadMoreBtn.textContent = "加载更多";
+          els.loadMoreBtn.className =
+            "w-full rounded-2xl bg-gray-900 text-white py-3 font-semibold hover:bg-black active:bg-black transition";
+        }
+        els.loadMoreWrap.classList.remove("hidden");
+      }
+
+      function shuffleInPlace(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      }
+
+      function refresh() {
+        page = 1;
+        shuffleInPlace(dataset[currentCategory]);
+        renderList();
+        showToast("已刷新（Mock）");
+      }
+
+      function switchCategory(next) {
+        if (currentCategory === next) return;
+        currentCategory = next;
+        page = 1;
+        mode = "normal";
+        renderList();
+      }
+
+      function openStateModal() {
+        els.stateModal.classList.remove("hidden");
+      }
+      function closeStateModal() {
+        els.stateModal.classList.add("hidden");
+      }
+
+      function initFromUrl() {
+        const u = new URL(window.location.href);
+        const cat = u.searchParams.get("category");
+        if (cat === "ai" || cat === "individual") currentCategory = cat;
+      }
+
+      // events
+      els.tabIndividual.addEventListener("click", () => switchCategory("individual"));
+      els.tabAI.addEventListener("click", () => switchCategory("ai"));
+      els.loadMoreBtn.addEventListener("click", () => {
+        if (mode !== "normal") return;
+        page += 1;
+        renderList();
+      });
+      els.refreshBtn.addEventListener("click", () => {
+        if (mode === "error" || mode === "empty") mode = "normal";
+        refresh();
+      });
+      els.stateBtn.addEventListener("click", openStateModal);
+      els.closeStateBtn.addEventListener("click", closeStateModal);
+      els.stateModal.addEventListener("click", (e) => {
+        if (e.target === els.stateModal) closeStateModal();
+      });
+      document.querySelectorAll(".modeBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          mode = btn.getAttribute("data-mode") || "normal";
+          closeStateModal();
+          renderList();
+          showToast(mode === "normal" ? "正常" : mode === "empty" ? "空状态" : "加载失败");
+        });
+      });
+
+      // init
+      initFromUrl();
+      renderList();
+    </script>
+  </body>
+</html>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const BASE_W = 1920;
+      const BASE_H = 1080;
+
+      const covers = [
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&q=80",
+        "https://images.unsplash.com/photo-1557683316-973673baf926?w=1400&q=80",
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1400&q=80",
+        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80",
+        "https://images.unsplash.com/photo-1554774853-b414d539f13d?w=1400&q=80",
+        "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1400&q=80",
+      ];
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+      function formatTime(ts) {
+        const d = new Date(ts);
+        const now = new Date();
+        const deltaMin = Math.max(0, Math.round((now - d) / 60000));
+        if (deltaMin <= 2) return "刚刚";
+        if (deltaMin < 60) return `${deltaMin} 分钟前`;
+        return `${d.getMonth() + 1}月${d.getDate()}日 ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+      }
+
+      function genMockNews(category) {
+        const baseSources =
+          category === "ai"
+            ? [
+                { name: "OpenAI Blog", url: "https://openai.com/blog" },
+                { name: "Google AI", url: "https://ai.google/" },
+                { name: "Hugging Face", url: "https://huggingface.co/blog" },
+                { name: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence" },
+                { name: "MIT Tech Review", url: "https://www.technologyreview.com/" },
+              ]
+            : [
+                { name: "Indie Hackers", url: "https://www.indiehackers.com/" },
+                { name: "Product Hunt", url: "https://www.producthunt.com/" },
+                { name: "Hacker News", url: "https://news.ycombinator.com/" },
+                { name: "Lenny’s Newsletter", url: "https://www.lennysnewsletter.com/" },
+                { name: "Stripe", url: "https://stripe.com/" },
+              ];
+
+        const titleSeeds =
+          category === "ai"
+            ? [
+                "多模态模型如何改变个人工作流",
+                "开源推理加速：把延迟从 2s 降到 400ms",
+                "AI 产品增长：从体验到留存的 7 个关键点",
+                "政策更新：AI 合规与数据治理的最新动向",
+                "工具链升级：把提示工程变成可复用资产",
+              ]
+            : [
+                "独立开发者如何在 30 天做出可售卖产品",
+                "从 0 到 1：个人品牌与内容分发的组合拳",
+                "小团队增长：把用户反馈变成迭代节奏",
+                "副业转正：如何找到第一个稳定的付费用户",
+                "产品冷启动：用最小闭环验证需求",
+              ];
+
+        const summarySeeds =
+          category === "ai"
+            ? [
+                "围绕“可落地”的使用场景展开，强调可观察指标与迭代回路，避免只堆模型能力。",
+                "从数据、评测、推理到上线监控给出全链路要点，并补充常见坑位与规避方案。",
+                "以真实团队案例拆解：需求澄清、产研协作、以及把模型融入体验的关键触点。",
+              ]
+            : [
+                "从市场与用户心智入手，强调先卖后做与快速验证，减少无效开发。",
+                "拆解获客渠道、定价与交付方式，给出可复用的执行清单与节奏建议。",
+                "聚焦最小可行闭环：问题-方案-验证-复购，帮助个人保持长期迭代。",
+              ];
+
+        const now = Date.now();
+        const items = [];
+        for (let i = 0; i < 60; i++) {
+          const source = baseSources[i % baseSources.length];
+          const title = titleSeeds[i % titleSeeds.length] + `（第 ${i + 1} 条）`;
+          const summary = summarySeeds[i % summarySeeds.length];
+          const publishTime = now - (i * 31 + (category === "ai" ? 13 : 5)) * 60 * 1000;
+          const id = `${category}-${i + 1}`;
+          items.push({
+            id,
+            category,
+            title,
+            summary,
+            sourceName: source.name,
+            sourceUrl: source.url,
+            publishTime,
+            coverUrl: covers[i % covers.length],
+          });
+        }
+        return items;
+      }
+
+      const dataset = {
+        individual: genMockNews("individual"),
+        ai: genMockNews("ai"),
+      };
+
+      let currentCategory = "individual";
+      let page = 1;
+      let mode = "normal"; // normal | empty | error
+      const PAGE_SIZE = 12;
+
+      const els = {
+        webDevice: document.getElementById("webDevice"),
+        tabIndividual: document.getElementById("tabIndividual"),
+        tabAI: document.getElementById("tabAI"),
+        refreshBtn: document.getElementById("refreshBtn"),
+        stateBtn: document.getElementById("stateBtn"),
+        stateModal: document.getElementById("stateModal"),
+        closeStateBtn: document.getElementById("closeStateBtn"),
+        toast: document.getElementById("toast"),
+        headline: document.getElementById("headline"),
+        countHint: document.getElementById("countHint"),
+        listContainer: document.getElementById("listContainer"),
+        loadMoreWrap: document.getElementById("loadMoreWrap"),
+        loadMoreBtn: document.getElementById("loadMoreBtn"),
+        sourceList: document.getElementById("sourceList"),
+      };
+
+      function applyScale() {
+        const maxW = window.innerWidth - 48;
+        const maxH = window.innerHeight - 48;
+        const s = Math.min(maxW / BASE_W, maxH / BASE_H, 1);
+        els.webDevice.style.transform = `scale(${s})`;
+      }
+
+      function showToast(text) {
+        els.toast.textContent = text;
+        els.toast.classList.remove("opacity-0");
+        els.toast.classList.add("opacity-100");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          els.toast.classList.add("opacity-0");
+          els.toast.classList.remove("opacity-100");
+        }, 900);
+      }
+
+      function setTabStyles() {
+        const active = "bg-white shadow-sm text-gray-900 ring-1 ring-gray-200";
+        const inactive = "text-gray-600 hover:text-gray-800";
+
+        if (currentCategory === "individual") {
+          els.tabIndividual.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${active}`;
+          els.tabAI.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${inactive}`;
+        } else {
+          els.tabAI.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${active}`;
+          els.tabIndividual.className = `rounded-xl px-4 py-2 text-sm font-medium transition ${inactive}`;
+        }
+      }
+
+      function truncate(s, n) {
+        if (!s) return "";
+        return s.length > n ? s.slice(0, n) + "…" : s;
+      }
+
+      function renderRow(item) {
+        return `
+          <article class="rounded-3xl border border-gray-200 bg-white overflow-hidden hover:shadow-[0_20px_60px_rgba(15,23,42,0.10)] transition">
+            <button data-id="${item.id}" class="w-full text-left">
+              <div class="grid grid-cols-12 gap-0">
+                <div class="col-span-4 relative h-[190px]">
+                  <img src="${item.coverUrl}" alt="" class="h-full w-full object-cover" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+                  <div class="absolute left-4 right-4 bottom-3 flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs text-white backdrop-blur">
+                      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                      <span>${item.sourceName}</span>
+                    </span>
+                    <span class="text-xs text-white/80">${formatTime(item.publishTime)}</span>
+                  </div>
+                </div>
+                <div class="col-span-8 p-5">
+                  <h3 class="text-[18px] leading-7 font-semibold text-gray-900">
+                    ${item.title}
+                  </h3>
+                  <p class="mt-2 text-sm leading-7 text-gray-600">
+                    ${truncate(item.summary, 170)}
+                  </p>
+                  <div class="mt-4 flex items-center justify-between text-xs text-gray-500">
+                    <span class="inline-flex items-center gap-2">
+                      <i class="fa-regular fa-clock"></i>
+                      <span>发布时间倒序</span>
+                    </span>
+                    <span class="inline-flex items-center gap-2 text-indigo-600">
+                      <span>查看详情</span>
+                      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </article>
+        `;
+      }
+
+      function renderEmpty() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-12 text-center">
+            <div class="mx-auto h-14 w-14 rounded-3xl bg-gray-100 flex items-center justify-center text-gray-500">
+              <i class="fa-regular fa-face-meh text-2xl"></i>
+            </div>
+            <div class="mt-4 text-lg font-semibold text-gray-900">暂无该分类新闻</div>
+            <div class="mt-1 text-sm text-gray-500">你可以切换分类或点击刷新重试。</div>
+            <button id="emptyRetryBtn" class="mt-5 inline-flex items-center gap-2 rounded-2xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>刷新</span>
+            </button>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("emptyRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderError() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-rose-200 bg-rose-50 px-6 py-10">
+            <div class="flex items-start gap-4">
+              <div class="h-14 w-14 rounded-3xl bg-rose-200/60 text-rose-700 flex items-center justify-center">
+                <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-lg font-semibold text-rose-900">加载失败，请刷新重试</div>
+                <div class="mt-1 text-sm leading-7 text-rose-800/80">
+                  原型演示：当列表接口失败时，展示错误状态与重试入口。
+                </div>
+                <button id="errorRetryBtn" class="mt-5 inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-5 py-3 text-sm font-semibold text-white hover:bg-rose-700">
+                  <i class="fa-solid fa-rotate-right"></i>
+                  <span>重试</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("errorRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderSources() {
+        const items = dataset[currentCategory];
+        const map = new Map();
+        for (const it of items.slice(0, 30)) {
+          map.set(it.sourceName, (map.get(it.sourceName) || 0) + 1);
+        }
+        const rows = Array.from(map.entries())
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 8)
+          .map(([name, cnt], idx) => {
+            const pct = Math.max(12, Math.min(90, cnt * 12 + idx * 4));
+            return `
+              <div class="rounded-2xl border border-gray-200 p-4 hover:bg-gray-50 transition">
+                <div class="flex items-center justify-between">
+                  <div class="font-medium text-gray-900">${name}</div>
+                  <div class="text-xs text-gray-500">${cnt} 条</div>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-gray-100 overflow-hidden">
+                  <div class="h-full rounded-full bg-indigo-600" style="width:${pct}%"></div>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+        els.sourceList.innerHTML = rows || `<div class="text-sm text-gray-500">暂无数据</div>`;
+      }
+
+      function renderList() {
+        setTabStyles();
+
+        els.headline.textContent = currentCategory === "ai" ? "今日最新 · AI 新闻" : "今日最新 · 个体新闻";
+        els.countHint.textContent = `${dataset[currentCategory].length} 条（Mock）`;
+        renderSources();
+
+        if (mode === "empty") return renderEmpty();
+        if (mode === "error") return renderError();
+
+        const items = dataset[currentCategory];
+        const slice = items.slice(0, page * PAGE_SIZE);
+        els.listContainer.innerHTML = slice.map(renderRow).join("");
+
+        els.listContainer.querySelectorAll("button[data-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            window.location.href = `./detail.html?id=${encodeURIComponent(id)}&category=${encodeURIComponent(currentCategory)}`;
+          });
+        });
+
+        const hasMore = items.length > slice.length;
+        if (!hasMore) {
+          els.loadMoreBtn.disabled = true;
+          els.loadMoreBtn.textContent = "没有更多了";
+          els.loadMoreBtn.className = "w-full rounded-2xl bg-gray-200 text-gray-500 py-3 font-semibold";
+        } else {
+          els.loadMoreBtn.disabled = false;
+          els.loadMoreBtn.textContent = "加载更多";
+          els.loadMoreBtn.className =
+            "w-full rounded-2xl bg-gray-900 text-white py-3 font-semibold hover:bg-black active:bg-black transition";
+        }
+        els.loadMoreWrap.classList.remove("hidden");
+      }
+
+      function shuffleInPlace(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      }
+
+      function refresh() {
+        page = 1;
+        shuffleInPlace(dataset[currentCategory]);
+        renderList();
+        showToast("已刷新（Mock）");
+      }
+
+      function switchCategory(next) {
+        if (currentCategory === next) return;
+        currentCategory = next;
+        page = 1;
+        mode = "normal";
+        renderList();
+      }
+
+      function openStateModal() {
+        els.stateModal.classList.remove("hidden");
+      }
+      function closeStateModal() {
+        els.stateModal.classList.add("hidden");
+      }
+
+      function initFromUrl() {
+        const u = new URL(window.location.href);
+        const cat = u.searchParams.get("category");
+        if (cat === "ai" || cat === "individual") currentCategory = cat;
+      }
+
+      // events
+      els.tabIndividual.addEventListener("click", () => switchCategory("individual"));
+      els.tabAI.addEventListener("click", () => switchCategory("ai"));
+      els.loadMoreBtn.addEventListener("click", () => {
+        if (mode !== "normal") return;
+        page += 1;
+        renderList();
+      });
+      els.refreshBtn.addEventListener("click", () => {
+        if (mode === "error" || mode === "empty") mode = "normal";
+        refresh();
+      });
+      els.stateBtn.addEventListener("click", openStateModal);
+      els.closeStateBtn.addEventListener("click", closeStateModal);
+      els.stateModal.addEventListener("click", (e) => {
+        if (e.target === els.stateModal) closeStateModal();
+      });
+      document.querySelectorAll(".modeBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          mode = btn.getAttribute("data-mode") || "normal";
+          closeStateModal();
+          renderList();
+          showToast(mode === "normal" ? "正常" : mode === "empty" ? "空状态" : "加载失败");
+        });
+      });
+
+      // init
+      initFromUrl();
+      applyScale();
+      window.addEventListener("resize", applyScale);
+      renderList();
+    </script>
+  </body>
+</html>

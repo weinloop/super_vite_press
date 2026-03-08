@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iOS｜反馈（Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+      .device-ios { width: 440px; height: 956px; border-radius: 54px; overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.2); }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-6 py-10">
+      <div class="device-ios relative bg-gray-50">
+        <header class="flex items-center justify-between px-6 text-white text-sm bg-black/85" style="height: 54px; padding-top: 18px; padding-bottom: 8px">
+          <span>9:41</span>
+          <div class="flex items-center gap-1"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></div>
+        </header>
+        <div class="relative h-[calc(956px-54px)]">
+          <div class="px-5 pt-4 pb-3 bg-white/80 backdrop-blur border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <a href="./ios.html" class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700"><i class="fa-solid fa-arrow-left"></i></a>
+              <div class="text-lg font-semibold text-gray-900">反馈</div>
+              <div class="w-10"></div>
+            </div>
+          </div>
+          <main class="overflow-y-auto px-5 pt-6 pb-28 space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">类型（可选）</label>
+              <select class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-900 bg-white">
+                <option>建议</option>
+                <option>BUG</option>
+                <option>其他</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">问题描述（必填）</label>
+              <textarea class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-900 bg-white min-h-[120px] resize-none" placeholder="请描述您的问题或建议..."></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">联系方式（可选）</label>
+              <input type="text" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-900 bg-white" placeholder="邮箱或手机，便于我们回复" />
+            </div>
+            <button class="w-full rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3">
+              提交
+            </button>
+            <div class="text-xs text-gray-500 text-center">提交后展示成功提示（Mock）</div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

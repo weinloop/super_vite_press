@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iOS｜教程详情（如何成为超级个体 · Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .device-ios {
+        width: 440px;
+        height: 956px;
+        border-radius: 54px;
+        overflow: hidden;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-6 py-10">
+      <div class="device-ios relative bg-gray-50">
+        <!-- iOS 状态栏 -->
+        <header
+          class="flex items-center justify-between px-6 text-white text-sm bg-black/85"
+          style="height: 54px; padding-top: 18px; padding-bottom: 8px"
+        >
+          <span id="statusTime">9:41</span>
+          <div class="flex items-center gap-1">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
+          </div>
+        </header>
+
+        <div class="relative h-[calc(956px-54px)] flex flex-col">
+          <!-- 顶部导航区 -->
+          <div class="px-5 pt-4 pb-3 bg-white/80 backdrop-blur border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <button
+                id="backBtn"
+                class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                aria-label="返回"
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <div class="text-sm font-semibold text-gray-900">教程详情</div>
+              <button
+                id="shareBtn"
+                class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                aria-label="分享"
+              >
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 内容区 -->
+          <main class="flex-1 overflow-y-auto no-scrollbar bg-white">
+            <div id="hero" class="relative h-48 bg-gray-200">
+              <img id="heroImg" alt="" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"></div>
+              <div class="absolute left-5 right-5 bottom-4 flex items-center justify-between">
+                <div class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs text-white backdrop-blur">
+                  <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+                  <span id="stageLabel">入门</span>
+                </div>
+                <div id="sourcePill" class="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50/90 px-3 py-1 text-[10px] text-emerald-800">
+                  <span id="sourceLabel">自产</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-5 pt-5 pb-28">
+              <h1 id="title" class="text-[18px] leading-7 font-semibold text-gray-900">—</h1>
+              <p id="summary" class="mt-3 text-sm leading-7 text-gray-700">
+                —
+              </p>
+
+              <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1">
+                  <i class="fa-regular fa-clock"></i>
+                  <span id="publishTime">—</span>
+                </span>
+                <span id="topicChips" class="flex flex-wrap gap-1"></span>
+              </div>
+
+              <div class="mt-6 rounded-3xl border border-gray-200 bg-gray-50 p-4">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold text-gray-900">正文示意（Mock）</div>
+                  <div class="text-xs text-gray-500">展示段落结构即可</div>
+                </div>
+                <div id="content" class="mt-3 text-sm leading-7 text-gray-700 space-y-2">
+                  <p>—</p>
+                </div>
+              </div>
+
+              <div class="mt-4 rounded-3xl border border-indigo-100 bg-indigo-50/70 p-4">
+                <div class="flex items-start gap-3">
+                  <div class="h-10 w-10 rounded-2xl bg-indigo-200/60 text-indigo-700 flex items-center justify-center">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-semibold text-indigo-900">来源与外链说明</div>
+                    <div id="sourceExplain" class="mt-1 text-sm leading-7 text-indigo-900/80">
+                      —
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 text-xs text-gray-400">
+                可选区块「相关新闻 / 本周案例」可在这里扩展（原型暂用新闻模块 Demo 表达）。
+              </div>
+            </div>
+          </main>
+
+          <!-- 底部操作区 -->
+          <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur border-t border-gray-200 px-5 pt-3 pb-8">
+            <button
+              id="openExternalBtn"
+              class="w-full rounded-2xl bg-sky-600 hover:bg-sky-700 active:bg-sky-700 text-white font-semibold py-3"
+            >
+              打开外链
+            </button>
+            <div id="externalHint" class="mt-2 text-center text-xs text-gray-500">
+              若为外链类型，将在新窗口打开；否则按钮为占位演示。
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div
+            id="toast"
+            class="pointer-events-none opacity-0 transition absolute left-1/2 -translate-x-1/2 top-28 rounded-full bg-gray-900 text-white text-xs px-4 py-2 shadow-xl"
+          >
+            已复制
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const stages = [
+        { id: "intro", name: "入门" },
+        { id: "advanced", name: "进阶" },
+        { id: "monetize", name: "变现" },
+      ];
+      const topics = [
+        { id: "tools", name: "工具" },
+        { id: "ai", name: "AI 协作" },
+        { id: "content", name: "内容创作" },
+        { id: "onebiz", name: "一人公司" },
+        { id: "compliance", name: "政策与合规" },
+      ];
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+      function setStatusClock() {
+        const now = new Date();
+        document.getElementById("statusTime").textContent = `${pad2(now.getHours())}:${pad2(
+          now.getMinutes()
+        )}`;
+      }
+      function showToast(text) {
+        const toast = document.getElementById("toast");
+        toast.textContent = text;
+        toast.classList.remove("opacity-0");
+        toast.classList.add("opacity-100");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          toast.classList.add("opacity-0");
+          toast.classList.remove("opacity-100");
+        }, 900);
+      }
+
+      function genMockTutorials() {
+        const baseSummaryIntro =
+          "本教程帮助你在信息洪流里，找到一条适合自己的起步路径：先看清「我是谁」，再看清「我可以为谁创造什么价值」。";
+        const baseSummaryAdvanced =
+          "当你已经开始输出，真正的难题变成了「如何持续」：这篇教程帮你设计节奏，避免三分钟热度。";
+        const baseSummaryMonetize =
+          "从免费内容到付费产品，中间有一条可控的过渡带，本教程给出几个可以低成本试错的入口。";
+
+        const stageIdList = ["intro", "advanced", "monetize"];
+        const sourceTypes = ["self", "repost", "external"];
+        const now = Date.now();
+        const tutorials = [];
+        let idCounter = 1;
+
+        for (const stageId of stageIdList) {
+          for (let i = 0; i < 12; i++) {
+            const title =
+              stageId === "intro"
+                ? `入门关键动作 ${i + 1}：给自己一个可执行的小目标`
+                : stageId === "advanced"
+                ? `进阶第 ${i + 1} 步：把输出变成稳定节奏`
+                : `变现实验 ${i + 1}：用最小付费产品试水`;
+
+            const stageSummary =
+              stageId === "intro"
+                ? baseSummaryIntro
+                : stageId === "advanced"
+                ? baseSummaryAdvanced
+                : baseSummaryMonetize;
+
+            const topicCount = 1 + (i % 2);
+            const shuffled = [...topics].sort(() => Math.random() - 0.5);
+            const topicIds = shuffled.slice(0, topicCount).map((t) => t.id);
+            const sourceType = sourceTypes[i % sourceTypes.length];
+            const isExternal = sourceType === "external";
+
+            const publishTime = now - (idCounter * 41 + (stageId === "monetize" ? 17 : 9)) * 60 * 1000;
+            tutorials.push({
+              id: `tutorial-${idCounter}`,
+              title,
+              summary: stageSummary,
+              stageId,
+              topicIds,
+              coverImage: `https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80&sig=${idCounter}`,
+              sourceType,
+              sourceLabel:
+                sourceType === "self" ? "自产" : sourceType === "repost" ? "转载" : "外链",
+              externalUrl: isExternal ? "https://www.producthunt.com/" : "",
+              publishTime,
+              content:
+                "你不需要一开始就把所有事情想清楚。更现实的做法是：先找一个足够小、但对你和他人都有真实价值的行动，再通过这个行动观察反馈。\\n\\n可以从这三个问题开始：\\n1. 过去一个月，你在哪些事情上被人主动求助？\\n2. 这些事情里，有哪些是你愿意长期做的？\\n3. 若只允许你用 2 小时做一件事帮助别人，你会选哪一件？",
+            });
+
+            idCounter++;
+          }
+        }
+        return tutorials;
+      }
+
+      const tutorials = genMockTutorials();
+
+      function formatTime(ts) {
+        const d = new Date(ts);
+        return `${d.getMonth() + 1}月${d.getDate()}日 ${pad2(d.getHours())}:${pad2(
+          d.getMinutes()
+        )}`;
+      }
+
+      function init() {
+        const u = new URL(window.location.href);
+        const id = u.searchParams.get("id") || "tutorial-1";
+        const stage = u.searchParams.get("stage") || "intro";
+        const topic = u.searchParams.get("topic") || "";
+
+        const item =
+          tutorials.find((t) => t.id === id) ||
+          tutorials.find((t) => t.stageId === stage) ||
+          tutorials[0];
+
+        const stageMeta = stages.find((s) => s.id === item.stageId);
+        const topicLabels = topics.filter((t) => item.topicIds.includes(t.id)).map((t) => t.name);
+
+        document.getElementById("heroImg").src = item.coverImage;
+        document.getElementById("stageLabel").textContent = stageMeta ? stageMeta.name : "";
+        document.getElementById("sourceLabel").textContent = item.sourceLabel;
+        document.getElementById("title").textContent = item.title;
+        document.getElementById("summary").textContent = item.summary;
+        document.getElementById("publishTime").textContent = formatTime(item.publishTime);
+
+        const topicChips = topicLabels
+          .map(
+            (name) =>
+              `<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[10px] text-gray-600">${name}</span>`
+          )
+          .join("");
+        document.getElementById("topicChips").innerHTML = topicChips;
+
+        const contentEl = document.getElementById("content");
+        contentEl.innerHTML = "";
+        const lines = item.content.split("\\n");
+        lines.forEach((line) => {
+          const p = document.createElement("p");
+          p.textContent = line;
+          contentEl.appendChild(p);
+        });
+
+        const sourceExplain = document.getElementById("sourceExplain");
+        if (item.sourceType === "external") {
+          sourceExplain.textContent =
+            "该教程为外链精选内容：平台仅做导航与摘要说明，点击下方「打开外链」将在新窗口中跳转至原站点。请在对方站点遵守相关使用条款。";
+        } else if (item.sourceType === "repost") {
+          sourceExplain.textContent =
+            "该教程为经授权转载内容：在保留原文核心结构的前提下，做了排版与结构优化。若需查看更多上下文，可后续补充「阅读原文」外链。";
+        } else {
+          sourceExplain.textContent =
+            "该教程为平台自产内容：你可以在后续版本中为其绑定「本周案例」「相关新闻」等补充模块，形成从概念到实践、从教程到实践案例的闭环。";
+        }
+
+        const sourcePill = document.getElementById("sourcePill");
+        if (item.sourceType === "external") {
+          sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-indigo-200 bg-indigo-50/90 px-3 py-1 text-[10px] text-indigo-800";
+        } else if (item.sourceType === "repost") {
+          sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50/90 px-3 py-1 text-[10px] text-amber-800";
+        } else {
+          sourcePill.className =
+            "inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50/90 px-3 py-1 text-[10px] text-emerald-800";
+        }
+
+        document.getElementById("backBtn").addEventListener("click", () => {
+          const params = new URLSearchParams({
+            stage: item.stageId,
+          });
+          if (topic) params.set("topic", topic);
+          window.location.href = `./ios.html?${params.toString()}`;
+        });
+
+        document.getElementById("shareBtn").addEventListener("click", async () => {
+          const text = `${item.title}（${item.sourceLabel}）`;
+          try {
+            if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+            showToast("已复制（Mock）");
+          } catch {
+            showToast("复制失败（Mock）");
+          }
+        });
+
+        const openBtn = document.getElementById("openExternalBtn");
+        const hint = document.getElementById("externalHint");
+        if (item.externalUrl) {
+          hint.textContent = "该教程为外链类型，将在新窗口打开原站点页面。";
+          openBtn.disabled = false;
+          openBtn.className =
+            "w-full rounded-2xl bg-sky-600 hover:bg-sky-700 active:bg-sky-700 text-white font-semibold py-3";
+          openBtn.addEventListener("click", () => {
+            window.open(item.externalUrl, "_blank", "noopener,noreferrer");
+          });
+        } else {
+          hint.textContent =
+            "该教程为自产/转载内容，按钮仅作占位演示；实际产品中可改为收藏/分享等操作。";
+          openBtn.disabled = true;
+          openBtn.className =
+            "w-full rounded-2xl bg-gray-200 text-gray-500 font-semibold py-3";
+        }
+      }
+
+      setStatusClock();
+      window.setInterval(setStatusClock, 15000);
+      init();
+    </script>
+  </body>
+</html>
+

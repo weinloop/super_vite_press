@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iOS｜如何成为超级个体（教程 Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .device-ios {
+        width: 440px;
+        height: 956px;
+        border-radius: 54px;
+        overflow: hidden;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .chip {
+        @apply rounded-2xl px-3 py-1 text-xs border border-gray-200 bg-white;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-6 py-10">
+      <div class="device-ios relative bg-gray-50">
+        <!-- iOS 状态栏 -->
+        <header
+          class="flex items-center justify-between px-6 text-white text-sm bg-black/85"
+          style="height: 54px; padding-top: 18px; padding-bottom: 8px"
+        >
+          <span id="statusTime">9:41</span>
+          <div class="flex items-center gap-1">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
+          </div>
+        </header>
+
+        <div class="relative h-[calc(956px-54px)]">
+          <!-- 顶部导航区 -->
+          <div class="px-5 pt-4 pb-3 bg-white/80 backdrop-blur border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="h-10 w-10 rounded-2xl bg-gradient-to-br from-sky-500 via-cyan-500 to-emerald-500"
+                ></div>
+                <div>
+                  <div class="text-xs text-gray-500">REQ-018-002 · P1</div>
+                  <div class="text-lg font-semibold tracking-tight">如何成为超级个体</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  id="refreshBtn"
+                  class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                  title="刷新（模拟）"
+                >
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button
+                  id="stateBtn"
+                  class="h-10 w-10 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-200 text-gray-700"
+                  title="状态（原型）"
+                >
+                  <i class="fa-solid fa-sliders"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- 阶段导航 -->
+            <div class="mt-4">
+              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                <span id="stageLabel">当前阶段：入门</span>
+                <a href="../../index.html" class="hover:text-gray-700">返回入口</a>
+              </div>
+              <div class="rounded-2xl bg-gray-100 p-1 flex gap-1">
+                <button
+                  id="stageIntro"
+                  class="flex-1 rounded-xl px-3 py-2 text-sm font-medium transition"
+                >
+                  入门
+                </button>
+                <button
+                  id="stageAdvanced"
+                  class="flex-1 rounded-xl px-3 py-2 text-sm font-medium transition"
+                >
+                  进阶
+                </button>
+                <button
+                  id="stageMonetize"
+                  class="flex-1 rounded-xl px-3 py-2 text-sm font-medium transition"
+                >
+                  变现
+                </button>
+              </div>
+
+              <!-- 主题筛选 Chips -->
+              <div class="mt-3 flex items-center justify-between gap-3">
+                <div class="flex flex-1 items-center gap-2 overflow-x-auto no-scrollbar text-xs">
+                  <button
+                    data-topic=""
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-transparent bg-white/0 text-gray-300"
+                  >
+                    全部主题
+                  </button>
+                  <button
+                    data-topic="tools"
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-xs text-gray-700"
+                  >
+                    工具
+                  </button>
+                  <button
+                    data-topic="ai"
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-xs text-gray-700"
+                  >
+                    AI 协作
+                  </button>
+                  <button
+                    data-topic="content"
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-xs text-gray-700"
+                  >
+                    内容创作
+                  </button>
+                  <button
+                    data-topic="onebiz"
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-xs text-gray-700"
+                  >
+                    一人公司
+                  </button>
+                  <button
+                    data-topic="compliance"
+                    class="topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-xs text-gray-700"
+                  >
+                    政策与合规
+                  </button>
+                </div>
+                <span class="shrink-0 text-[11px] text-gray-400">点击 Chip 切换主题</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 列表区 -->
+          <main class="h-full">
+            <div
+              id="listScroll"
+              class="h-full overflow-y-auto no-scrollbar px-5 pt-4 pb-28 bg-gradient-to-b from-gray-50 to-white"
+            >
+              <div
+                class="mb-4 rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-xs text-sky-900 leading-6"
+              >
+                阶段代表「你现在在哪一步」，主题代表「你在关心什么」：先选阶段，再用主题缩小范围，快速找到下一步行动建议。
+              </div>
+
+              <div id="listContainer" class="space-y-3"></div>
+
+              <div id="loadMoreWrap" class="mt-5">
+                <button
+                  id="loadMoreBtn"
+                  class="w-full rounded-2xl bg-gray-900 text-white py-3 font-medium hover:bg-black active:bg-black transition"
+                >
+                  加载更多
+                </button>
+                <div id="loadMoreHint" class="mt-2 text-center text-xs text-gray-500">
+                  每次加载 8 条（Mock）
+                </div>
+              </div>
+
+              <div class="h-6"></div>
+            </div>
+          </main>
+
+          <!-- iOS 底部 Tab Bar -->
+          <nav class="absolute bottom-0 left-0 right-0 bg-white border-t pt-2 pb-8" style="min-height: 84px">
+            <div class="flex justify-around items-center">
+              <a href="../../mobile/ios.html" class="flex flex-col items-center gap-1 text-gray-400">
+                <i class="fa-solid fa-newspaper text-xl"></i>
+                <span class="text-xs">新闻</span>
+              </a>
+              <a href="./ios.html" class="flex flex-col items-center gap-1 text-sky-600">
+                <i class="fa-solid fa-graduation-cap text-xl"></i>
+                <span class="text-xs">教程</span>
+              </a>
+              <a href="javascript:void(0)" class="flex flex-col items-center gap-1 text-gray-400">
+                <i class="fa-regular fa-user text-xl"></i>
+                <span class="text-xs">我的</span>
+              </a>
+            </div>
+          </nav>
+
+          <!-- 状态切换弹层 -->
+          <div id="stateModal" class="hidden absolute inset-0 bg-black/35">
+            <div class="absolute inset-x-5 top-28 rounded-3xl bg-white shadow-2xl border border-gray-200 overflow-hidden">
+              <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+                <div class="font-semibold">切换列表状态（原型）</div>
+                <button id="closeStateBtn" class="h-9 w-9 rounded-2xl hover:bg-gray-100 text-gray-600">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="p-4 grid gap-2">
+                <button
+                  data-mode="normal"
+                  class="modeBtn w-full rounded-2xl border border-gray-200 px-4 py-3 text-left hover:bg-gray-50"
+                >
+                  <div class="font-medium">正常</div>
+                  <div class="text-xs text-gray-500 mt-0.5">展示教程列表 + 加载更多</div>
+                </button>
+                <button
+                  data-mode="empty"
+                  class="modeBtn w-full rounded-2xl border border-gray-200 px-4 py-3 text-left hover:bg-gray-50"
+                >
+                  <div class="font-medium">空状态</div>
+                  <div class="text-xs text-gray-500 mt-0.5">模拟该阶段/主题暂无教程</div>
+                </button>
+                <button
+                  data-mode="error"
+                  class="modeBtn w-full rounded-2xl border border-gray-200 px-4 py-3 text-left hover:bg-gray-50"
+                >
+                  <div class="font-medium">加载失败</div>
+                  <div class="text-xs text-gray-500 mt-0.5">模拟接口失败，提示重试</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div
+            id="toast"
+            class="pointer-events-none opacity-0 transition absolute left-1/2 -translate-x-1/2 top-28 rounded-full bg-gray-900 text-white text-xs px-4 py-2 shadow-xl"
+          >
+            已刷新
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const PAGE_SIZE = 8;
+      const stages = [
+        { id: "intro", name: "入门" },
+        { id: "advanced", name: "进阶" },
+        { id: "monetize", name: "变现" },
+      ];
+      const topics = [
+        { id: "tools", name: "工具" },
+        { id: "ai", name: "AI 协作" },
+        { id: "content", name: "内容创作" },
+        { id: "onebiz", name: "一人公司" },
+        { id: "compliance", name: "政策与合规" },
+      ];
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function setStatusClock() {
+        const now = new Date();
+        document.getElementById("statusTime").textContent = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+      }
+
+      function showToast(text) {
+        const toast = document.getElementById("toast");
+        toast.textContent = text;
+        toast.classList.remove("opacity-0");
+        toast.classList.add("opacity-100");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          toast.classList.add("opacity-0");
+          toast.classList.remove("opacity-100");
+        }, 900);
+      }
+
+      function genMockTutorials() {
+        const baseTitles = {
+          intro: [
+            "从 0 到 1：如何定义属于你的「超级个体」目标",
+            "搭建第一个公开身份：个人主页、邮箱与社交阵地",
+            "用一天时间盘点可以被市场购买的能力清单",
+          ],
+          advanced: [
+            "用内容建立信任：如何设计一条长期可持续的内容主线",
+            "从打工者到合作者：重构时间与收入结构",
+            "用 AI 做你的第二大脑：从搜集到决策的全流程",
+          ],
+          monetize: [
+            "设计第一个付费产品：从受众到交付形式",
+            "如何搭建「一人公司」的运营与交付系统",
+            "把案例变成资产：沉淀可复制的成功路径",
+          ],
+        };
+
+        const baseSummary = {
+          intro:
+            "围绕「从零开始」展开，帮助你看清自己处在什么位置、有哪些资源、下一步可以做什么，并避免一开始就陷入工具堆砌。",
+          advanced:
+            "重点解决「已经开始但不知道如何持续」的问题：从节奏、结构到协作方式，让输出与成长形成正反馈。",
+          monetize:
+            "聚焦于「如何把价值变成收入」：包括产品设计、定价、交付与复购，强调小步试错与风险可控。",
+        };
+
+        const stageIdList = ["intro", "advanced", "monetize"];
+        const sourceTypes = ["self", "repost", "external"];
+
+        const tutorials = [];
+        let idCounter = 1;
+        const now = Date.now();
+
+        for (const stageId of stageIdList) {
+          for (let i = 0; i < 20; i++) {
+            const titleSeed = baseTitles[stageId][i % baseTitles[stageId].length];
+            const title = `${titleSeed}（示例 ${i + 1}）`;
+            const summary = baseSummary[stageId];
+            const topicCount = 1 + (i % 2);
+            const shuffledTopics = [...topics].sort(() => Math.random() - 0.5);
+            const pickedTopics = shuffledTopics.slice(0, topicCount).map((t) => t.id);
+            const sourceType = sourceTypes[i % sourceTypes.length];
+            const isExternal = sourceType === "external";
+            const publishTime = now - (idCounter * 29 + (stageId === "monetize" ? 13 : 7)) * 60 * 1000;
+
+            tutorials.push({
+              id: `tutorial-${idCounter}`,
+              title,
+              summary,
+              stageId,
+              topicIds: pickedTopics,
+              coverImage: `https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80&sig=${idCounter}`,
+              sourceType,
+              sourceLabel:
+                sourceType === "self" ? "自产" : sourceType === "repost" ? "转载" : "外链",
+              externalUrl: isExternal
+                ? "https://www.indiehackers.com/"
+                : "",
+              publishTime,
+            });
+
+            idCounter++;
+          }
+        }
+
+        return tutorials;
+      }
+
+      const tutorials = genMockTutorials();
+      let currentStage = "intro";
+      let currentTopic = "";
+      let page = 1;
+      let mode = "normal"; // normal | empty | error
+
+      const els = {
+        listContainer: document.getElementById("listContainer"),
+        loadMoreWrap: document.getElementById("loadMoreWrap"),
+        loadMoreBtn: document.getElementById("loadMoreBtn"),
+        stageLabel: document.getElementById("stageLabel"),
+        listScroll: document.getElementById("listScroll"),
+        stateModal: document.getElementById("stateModal"),
+      };
+
+      function setStageLabel() {
+        const meta = stages.find((s) => s.id === currentStage);
+        els.stageLabel.textContent = `当前阶段：${meta ? meta.name : ""}`;
+      }
+
+      function setStageTabs() {
+        const active = "flex-1 rounded-xl px-3 py-2 text-sm font-medium transition bg-white shadow-sm text-gray-900 ring-1 ring-gray-200";
+        const inactive = "flex-1 rounded-xl px-3 py-2 text-sm font-medium transition text-gray-600 hover:text-gray-800";
+
+        document.getElementById("stageIntro").className =
+          currentStage === "intro" ? active : inactive;
+        document.getElementById("stageAdvanced").className =
+          currentStage === "advanced" ? active : inactive;
+        document.getElementById("stageMonetize").className =
+          currentStage === "monetize" ? active : inactive;
+      }
+
+      function setTopicChips() {
+        const chips = document.querySelectorAll(".topicChip");
+        chips.forEach((chip) => {
+          const v = chip.getAttribute("data-topic") || "";
+          if (v === currentTopic) {
+            chip.className =
+              "topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-sky-500 bg-sky-50 text-[11px] text-sky-800";
+          } else if (v === "") {
+            chip.className =
+              "topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-transparent bg-white/0 text-[11px] text-gray-300";
+          } else {
+            chip.className =
+              "topicChip whitespace-nowrap rounded-2xl px-3 py-1 border border-gray-200 bg-white text-[11px] text-gray-700";
+          }
+        });
+      }
+
+      function formatTime(ts) {
+        const d = new Date(ts);
+        const now = new Date();
+        const deltaMin = Math.max(0, Math.round((now - d) / 60000));
+        if (deltaMin <= 2) return "刚刚";
+        if (deltaMin < 60) return `${deltaMin} 分钟前`;
+        return `${d.getMonth() + 1}月${d.getDate()}日 ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+      }
+
+      function truncate(s, n) {
+        if (!s) return "";
+        return s.length > n ? s.slice(0, n) + "…" : s;
+      }
+
+      function renderCard(item) {
+        const stageName = stages.find((s) => s.id === item.stageId)?.name || "";
+        const topicLabels = topics
+          .filter((t) => item.topicIds.includes(t.id))
+          .map((t) => t.name);
+        const chips = topicLabels
+          .map(
+            (name) =>
+              `<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-[10px] text-gray-600">${name}</span>`
+          )
+          .join("");
+
+        const sourceColor =
+          item.sourceType === "self"
+            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+            : item.sourceType === "repost"
+            ? "bg-amber-50 text-amber-700 border-amber-200"
+            : "bg-indigo-50 text-indigo-700 border-indigo-200";
+
+        return `
+          <article class="rounded-3xl bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] border border-gray-100 overflow-hidden">
+            <button data-id="${item.id}" class="w-full text-left">
+              <div class="relative h-28">
+                <img src="${item.coverImage}" alt="" class="h-full w-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                <div class="absolute left-4 right-4 bottom-3 flex items-center justify-between gap-3">
+                  <div class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs text-white backdrop-blur">
+                    <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+                    <span>${stageName}</span>
+                  </div>
+                  <span class="text-xs text-white/80">${formatTime(item.publishTime)}</span>
+                </div>
+              </div>
+              <div class="px-4 pt-3 pb-4">
+                <h3 class="text-[15px] leading-6 font-semibold text-gray-900">
+                  ${item.title}
+                </h3>
+                <p class="mt-2 text-sm leading-6 text-gray-600">
+                  ${truncate(item.summary, 110)}
+                </p>
+                <div class="mt-3 flex items-center justify-between gap-2">
+                  <div class="flex flex-wrap gap-1">
+                    ${chips}
+                  </div>
+                  <span class="inline-flex items-center gap-1 rounded-full border ${sourceColor} px-2.5 py-1 text-[10px]">
+                    <span>${item.sourceLabel}</span>
+                  </span>
+                </div>
+              </div>
+            </button>
+          </article>
+        `;
+      }
+
+      function filterTutorials() {
+        return tutorials.filter((t) => {
+          if (t.stageId !== currentStage) return false;
+          if (currentTopic && !t.topicIds.includes(currentTopic)) return false;
+          return true;
+        });
+      }
+
+      function renderEmpty() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-dashed border-gray-300 bg-white px-5 py-8 text-center">
+            <div class="mx-auto h-12 w-12 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-500">
+              <i class="fa-regular fa-face-meh text-xl"></i>
+            </div>
+            <div class="mt-3 font-semibold text-gray-900">该阶段/主题下暂无教程</div>
+            <div class="mt-1 text-sm text-gray-500">你可以切换阶段或主题，或稍后再试。</div>
+            <button id="emptyRetryBtn" class="mt-4 inline-flex items-center gap-2 rounded-2xl bg-gray-900 px-4 py-2 text-sm font-medium text-white">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>刷新</span>
+            </button>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("emptyRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderError() {
+        els.listContainer.innerHTML = `
+          <div class="rounded-3xl border border-rose-200 bg-rose-50 px-5 py-7">
+            <div class="flex items-start gap-3">
+              <div class="h-11 w-11 rounded-2xl bg-rose-200/60 text-rose-700 flex items-center justify-center">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-rose-900">加载失败，请稍后重试</div>
+                <div class="mt-1 text-sm text-rose-800/80 leading-6">
+                  原型演示：当教程列表接口失败时，展示错误状态与重试入口。
+                </div>
+                <button id="errorRetryBtn" class="mt-4 inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700">
+                  <i class="fa-solid fa-rotate-right"></i>
+                  <span>重试</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        els.loadMoreWrap.classList.add("hidden");
+        document.getElementById("errorRetryBtn").addEventListener("click", () => {
+          mode = "normal";
+          refresh();
+        });
+      }
+
+      function renderList() {
+        setStageLabel();
+        setStageTabs();
+        setTopicChips();
+
+        if (mode === "empty") return renderEmpty();
+        if (mode === "error") return renderError();
+
+        const list = filterTutorials();
+        const slice = list.slice(0, page * PAGE_SIZE);
+        els.listContainer.innerHTML = slice.map(renderCard).join("");
+
+        els.listContainer.querySelectorAll("button[data-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            const params = new URLSearchParams({
+              id,
+              stage: currentStage,
+              topic: currentTopic,
+            });
+            window.location.href = `./ios-detail.html?${params.toString()}`;
+          });
+        });
+
+        const hasMore = list.length > slice.length;
+        if (!hasMore) {
+          els.loadMoreBtn.disabled = true;
+          els.loadMoreBtn.textContent = "没有更多了";
+          els.loadMoreBtn.className =
+            "w-full rounded-2xl bg-gray-200 text-gray-500 py-3 font-medium";
+        } else {
+          els.loadMoreBtn.disabled = false;
+          els.loadMoreBtn.textContent = "加载更多";
+          els.loadMoreBtn.className =
+            "w-full rounded-2xl bg-gray-900 text-white py-3 font-medium hover:bg-black active:bg-black transition";
+        }
+        els.loadMoreWrap.classList.remove("hidden");
+      }
+
+      function shuffleInPlace(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      }
+
+      function refresh() {
+        page = 1;
+        shuffleInPlace(tutorials);
+        renderList();
+        showToast("已刷新（Mock）");
+      }
+
+      function switchStage(nextStage) {
+        if (currentStage === nextStage) return;
+        currentStage = nextStage;
+        page = 1;
+        mode = "normal";
+        els.listScroll.scrollTop = 0;
+        renderList();
+      }
+
+      function switchTopic(nextTopic) {
+        if (currentTopic === nextTopic) return;
+        currentTopic = nextTopic;
+        page = 1;
+        mode = "normal";
+        els.listScroll.scrollTop = 0;
+        renderList();
+      }
+
+      function openStateModal() {
+        els.stateModal.classList.remove("hidden");
+      }
+      function closeStateModal() {
+        els.stateModal.classList.add("hidden");
+      }
+
+      function initFromUrl() {
+        const u = new URL(window.location.href);
+        const s = u.searchParams.get("stage");
+        const t = u.searchParams.get("topic");
+        if (s && stages.some((x) => x.id === s)) currentStage = s;
+        if (t && topics.some((x) => x.id === t)) currentTopic = t;
+      }
+
+      // events
+      document.getElementById("stageIntro").addEventListener("click", () => switchStage("intro"));
+      document
+        .getElementById("stageAdvanced")
+        .addEventListener("click", () => switchStage("advanced"));
+      document
+        .getElementById("stageMonetize")
+        .addEventListener("click", () => switchStage("monetize"));
+
+      document.querySelectorAll(".topicChip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const val = chip.getAttribute("data-topic") || "";
+          switchTopic(val);
+        });
+      });
+
+      document.getElementById("loadMoreBtn").addEventListener("click", () => {
+        if (mode !== "normal") return;
+        page += 1;
+        renderList();
+      });
+
+      document.getElementById("refreshBtn").addEventListener("click", () => {
+        if (mode === "error" || mode === "empty") mode = "normal";
+        refresh();
+      });
+
+      document.getElementById("stateBtn").addEventListener("click", openStateModal);
+      document.getElementById("closeStateBtn").addEventListener("click", closeStateModal);
+      els.stateModal.addEventListener("click", (e) => {
+        if (e.target === els.stateModal) closeStateModal();
+      });
+      document.querySelectorAll(".modeBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          mode = btn.getAttribute("data-mode") || "normal";
+          closeStateModal();
+          renderList();
+          showToast(mode === "normal" ? "正常" : mode === "empty" ? "空状态" : "加载失败");
+        });
+      });
+
+      // init
+      initFromUrl();
+      setStatusClock();
+      window.setInterval(setStatusClock, 15000);
+      renderList();
+    </script>
+  </body>
+</html>
+

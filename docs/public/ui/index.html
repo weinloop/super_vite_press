@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REQ-018-002｜超级个体原型 Demo（Mock）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <div class="mx-auto max-w-6xl px-6 py-10">
+      <header class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <div
+            class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_12px_35px_rgba(99,102,241,0.25)]"
+          ></div>
+          <div>
+            <div class="text-sm text-gray-500">REQ-018-002 · 多模块原型</div>
+            <h1 class="text-2xl font-semibold tracking-tight">超级个体平台 · 原型 Demo（Mock 数据）</h1>
+          </div>
+        </div>
+        <p class="max-w-3xl text-sm leading-6 text-gray-600">
+          本原型用于验证多个核心模块的界面与交互，包括「超级个体新闻」「如何成为超级个体」教程与「通用能力」设置。全部基于 Mock 数据，无需真实接口。
+        </p>
+      </header>
+
+      <!-- 模块一：超级个体新闻 -->
+      <section class="mt-8 grid gap-4 md:grid-cols-2">
+        <a
+          href="./mobile/ios.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">移动端</div>
+              <div class="mt-1 text-lg font-semibold">iOS Demo（列表 → 详情）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 group-hover:bg-indigo-100"
+            >
+              <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">iPhone 17 Pro Max 尺寸</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">状态栏 + Tab Bar</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">Mock 数据</span>
+          </div>
+        </a>
+
+        <a
+          href="./web/desktop.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">桌面端</div>
+              <div class="mt-1 text-lg font-semibold">Web Demo（列表 → 详情）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100"
+            >
+              <i class="fa-solid fa-display text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">浏览器窗口感</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">侧栏聚合信息</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">Mock 数据</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- 模块二：如何成为超级个体（教程） -->
+      <section class="mt-8 grid gap-4 md:grid-cols-2">
+        <a
+          href="./tutorial/mobile/ios.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">移动端 · 教程</div>
+              <div class="mt-1 text-lg font-semibold">iOS 教程 Demo（阶段 → 列表 → 详情）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 text-sky-700 group-hover:bg-sky-100"
+            >
+              <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">阶段 Tab（入门/进阶/变现）</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">主题筛选 Chips</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">Mock 教程卡片</span>
+          </div>
+        </a>
+
+        <a
+          href="./tutorial/web/desktop.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">桌面端 · 教程</div>
+              <div class="mt-1 text-lg font-semibold">Web 教程 Demo（阶段 + 主题 + 列表）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 group-hover:bg-amber-100"
+            >
+              <i class="fa-solid fa-display text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">阶段步骤条</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">教程详情 + 外链</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">相关新闻/案例占位</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- 模块三：通用能力（设置） -->
+      <section class="mt-8 grid gap-4 md:grid-cols-2">
+        <a
+          href="./settings/mobile/ios.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">移动端 · 通用能力</div>
+              <div class="mt-1 text-lg font-semibold">iOS 设置 Demo（通知/主题/账号/关于/帮助/反馈）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-rose-50 text-rose-700 group-hover:bg-rose-100"
+            >
+              <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">设置列表菜单</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">开关/表单 Mock</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">静态内容页</span>
+          </div>
+        </a>
+
+        <a
+          href="./settings/web/desktop.html"
+          class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="text-sm text-gray-500">桌面端 · 通用能力</div>
+              <div class="mt-1 text-lg font-semibold">Web 设置 Demo（全页面）</div>
+            </div>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-50 text-violet-700 group-hover:bg-violet-100"
+            >
+              <i class="fa-solid fa-display text-lg"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+            <span class="rounded-full bg-gray-100 px-3 py-1">设置入口</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">帮助/协议/隐私</span>
+            <span class="rounded-full bg-gray-100 px-3 py-1">反馈表单</span>
+          </div>
+        </a>
+      </section>
+
+      <section class="mt-10 grid gap-4 md:grid-cols-2">
+        <a
+          href="./ux-summary.md"
+          class="rounded-3xl border border-gray-200 bg-white p-6 text-sm text-gray-800 shadow-sm hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between">
+            <div class="font-semibold">UX 摘要</div>
+            <i class="fa-solid fa-file-lines text-gray-400"></i>
+          </div>
+          <div class="mt-2 text-gray-600">核心功能、主流程、异常与成功指标。</div>
+        </a>
+        <a
+          href="./ia.md"
+          class="rounded-3xl border border-gray-200 bg-white p-6 text-sm text-gray-800 shadow-sm hover:shadow-lg hover:border-gray-300"
+        >
+          <div class="flex items-center justify-between">
+            <div class="font-semibold">信息架构</div>
+            <i class="fa-solid fa-sitemap text-gray-400"></i>
+          </div>
+          <div class="mt-2 text-gray-600">页面清单、导航关系、关键界面说明。</div>
+        </a>
+      </section>
+
+      <footer class="mt-10 border-t border-gray-200 pt-6 text-xs text-gray-500">
+        <div class="flex flex-wrap items-center gap-3">
+          <span>原型实现：HTML + Tailwind（CDN）+ FontAwesome（CDN）</span>
+          <span class="opacity-60">·</span>
+          <span>图片：Unsplash 真实 URL</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

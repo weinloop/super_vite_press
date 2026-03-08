@@ -1,0 +1,17 @@
+{
+  "name": "superoneman-vitepress",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev ./docs",
+    "build": "vitepress build ./docs",
+    "preview": "vitepress preview ./docs"
+  },
+  "dependencies": {
+    "vitepress": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}
